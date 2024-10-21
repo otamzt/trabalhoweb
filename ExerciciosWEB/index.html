@@ -36,7 +36,8 @@
 
         <!-- Submenu de Informações para contato -->
         <div id="contato-submenu" class="position-absolute text-center btn-group-vertical">
-            <a href="#" class="btn btn-dark">Localização</a>
+            <a href="https://www.google.com/maps/@-18.4745569,-47.1998095,3a,75y,92.33h,90t/data=!3m7!1e1!3m5!1s3PDadiaOBbmlK4nvFKZCYQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3D3PDadiaOBbmlK4nvFKZCYQ%26yaw%3D92.33213306970924!7i16384!8i8192?coh=205410&entry=ttu&g_ep=EgoyMDI0MTAxNi4wIKXMDSoASAFQAw%3D%3D" 
+            class="btn btn-dark" target="_blank">Localização</a>
         </div>
     </header>
     
@@ -53,39 +54,43 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Função genérica para mostrar e esconder submenus
-            function showSubmenu(buttonId, submenuId) {
-                $(buttonId).hover(
-                    function() {
-                        var btnOffset = $(this).offset();
-                        var btnWidth = $(this).outerWidth();
-                        $(submenuId).css({
-                            top: btnOffset.top + $(this).outerHeight(),
-                            left: btnOffset.left,
-                            width: btnWidth // Ajusta a largura ao tamanho do botão
-                        }).stop().slideDown();
-                    },
-                    function() {
-                        $(submenuId).stop().slideUp();
-                    }
-                );
+        // Função genérica para mostrar e esconder submenus
+        function showSubmenu(buttonId, submenuId) {
+            $(buttonId).hover(
+                function() {
+                    // Calcula a posição correta do submenu
+                    var btnOffset = $(this).offset();
+                    var btnWidth = $(this).outerWidth();
+                    var submenuWidth = $(submenuId).outerWidth();
+                    var left = btnOffset.left + (btnWidth - submenuWidth) / 2; 
 
-                // Garantir que o submenu não desapareça quando o mouse está sobre ele
-                $(submenuId).hover(
-                    function() {
-                        $(this).stop().slideDown();
-                    },
-                    function() {
-                        $(this).stop().slideUp();
-                    }
-                );
-            }
+                    $(submenuId).css({
+                        top: btnOffset.top + $(this).outerHeight(),
+                        left: left, // Posição corrigida
+                        width: 'auto' // Remove a largura fixa
+                    }).stop().slideDown();
+                },
+                function() {
+                    $(submenuId).stop().slideUp();
+                }
+            );
 
-            // Chama a função para cada botão e submenu
-            showSubmenu('#empresa-btn', '#empresa-submenu');
-            showSubmenu('#obras-btn', '#obras-submenu');
-            showSubmenu('#contato-btn', '#contato-submenu');
-        });
+            // Garantir que o submenu não desapareça quando o mouse está sobre ele
+            $(submenuId).hover(
+                function() {
+                    $(this).stop().slideDown();
+                },
+                function() {
+                    $(this).stop().slideUp();
+                }
+            );
+        }
+
+        // Chama a função para cada botão e submenu
+        showSubmenu('#empresa-btn', '#empresa-submenu');
+        showSubmenu('#obras-btn', '#obras-submenu');
+        showSubmenu('#contato-btn', '#contato-submenu');
+    });
     </script>
 </body>
 </html>
