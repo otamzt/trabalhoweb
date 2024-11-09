@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,7 +18,7 @@
                 <a href="empresa.html" class="btn btn-secondary w-100" id="empresa-btn">Sobre a Empresa</a>
                 <a href="#" class="btn btn-secondary w-100" id="obras-btn">Obras</a>
                 <a href="contato.html" class="btn btn-secondary w-100" id="contato-btn">Informações para Contato</a>
-                <a href="login.html" class="btn btn-primary w-100">Login</a>
+                <a href="login.html" class="btn btn-primary w-100" id="login-btn">Login</a>
             </div>
         </div>
 
@@ -119,6 +120,36 @@
                     $('html, body').animate({
                         scrollTop: target.offset().top
                     }, 800);
+                }
+            });
+            $.ajax({
+                url: 'check_login.php', 
+                type: 'GET',
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    if (data.status === 'success') {
+                        $('#login-btn').text('Deslogar').removeClass('btn-primary').addClass('btn-danger');
+                        
+                        // Adicionar ação de logout
+                        $('#login-btn').click(function() {
+                            $.ajax({
+                                url: 'logout.php', // Um arquivo PHP que desconecta o usuário
+                                type: 'GET',
+                                success: function(logoutResponse) {
+                                    var logoutData = JSON.parse(logoutResponse);
+                                    if (logoutData.status === 'success') {
+                                        // Redireciona para a página de login após logout
+                                        window.location.href = 'login.html';
+                                    } else {
+                                        alert('Erro ao deslogar.');
+                                    }
+                                }
+                            });
+                        });
+                    }
+                },
+                error: function() {
+                    console.error('Erro ao verificar status de login.');
                 }
             });
         });
