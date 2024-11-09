@@ -75,13 +75,12 @@
         $(document).ready(function() {
             // Verificar se o usuário está logado
             $.ajax({
-                url: 'check_login.php', // Um arquivo PHP que verifica se o usuário está logado
+                url: 'check_login.php', 
                 type: 'GET',
                 success: function(response) {
                     var data = JSON.parse(response);
                     if (data.status === 'success') {
-                        // Se o usuário estiver logado, mudar o texto do botão para 'Deslogar'
-                        $('#login-btn').text('Deslogar').removeClass('btn-primary').addClass('btn-warning');
+                        $('#login-btn').text('Deslogar').removeClass('btn-primary').addClass('btn-danger');
                         
                         // Adicionar ação de logout
                         $('#login-btn').click(function() {
@@ -108,42 +107,60 @@
 
             // Envio do formulário de login
             $('#loginForm').submit(function(e) {
-                e.preventDefault();
-                var formData = $(this).serialize();
-    
-                console.log("Enviando login: ", formData); // Log para depuração
-    
-                $.ajax({
-                    url: 'login.php', // Chama o script de login
-                    type: 'POST',
-                    data: formData,
-                    success: function(response) {
-                        console.log("Resposta do servidor:", response); // Log para depuração
-    
-                        var data = JSON.parse(response);
-                        $('#loginMessage').html('<div class="alert alert-' + (data.status === 'success' ? 'success' : 'danger') + '">' + data.message + '</div>');
-                        
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        console.error("Erro na requisição:", textStatus, errorThrown); // Log de erro
-                        $('#loginMessage').html('<div class="alert alert-danger">Erro ao tentar fazer login.</div>');
-                    }
+    e.preventDefault();
+    var formData = $(this).serialize();
+
+    console.log("Enviando login: ", formData); 
+
+    $.ajax({
+        url: 'login.php', // Chama o script de login
+        type: 'POST',
+        data: formData,
+        success: function(response) {
+            console.log("Resposta do servidor:", response); 
+
+            var data = JSON.parse(response);
+            $('#loginMessage').html('<div class="alert alert-' + (data.status === 'success' ? 'success' : 'danger') + '">' + data.message + '</div>');
+            
+            if (data.status === 'success') {
+                $('#login-btn').text('Deslogar').removeClass('btn-primary').addClass('btn-danger');
+
+                $('#login-btn').off('click').on('click', function() {
+                    $.ajax({
+                        url: 'logout.php', 
+                        type: 'GET',
+                        success: function(logoutResponse) {
+                            var logoutData = JSON.parse(logoutResponse);
+                            if (logoutData.status === 'success') {
+                                window.location.href = 'login.html';
+                            } else {
+                                alert('Erro ao deslogar.');
+                            }
+                        }
+                    });
                 });
-            });
-    
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Erro na requisição:", textStatus, errorThrown); 
+            $('#loginMessage').html('<div class="alert alert-danger">Erro ao tentar fazer login.</div>');
+        }
+    });
+});
+            
             // Envio do formulário de cadastro
             $('#registerForm').submit(function(e) {
                 e.preventDefault();
                 var formData = $(this).serialize();
     
-                console.log("Enviando registro: ", formData); // Log para depuração
+                console.log("Enviando registro: ", formData); 
     
                 $.ajax({
-                    url: 'register.php', // Chama o script de registro
+                    url: 'register.php',
                     type: 'POST',
                     data: formData,
                     success: function(response) {
-                        console.log("Resposta do servidor:", response); // Log para depuração
+                        console.log("Resposta do servidor:", response); 
     
                         var data = JSON.parse(response);
                         $('#registerMessage').html('<div class="alert alert-' + (data.status === 'success' ? 'success' : 'danger') + '">' + data.message + '</div>');
