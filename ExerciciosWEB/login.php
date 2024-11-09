@@ -1,7 +1,4 @@
 <?php
-// Iniciar a sessão para armazenar dados do usuário autenticado
-session_start();
-
 // Conexão com o banco de dados
 $servername = "localhost";
 $username_db = "root";
@@ -11,8 +8,12 @@ $database = "seculus";
 $conn = new mysqli($servername, $username_db, $password_db, $database);
 
 if ($conn->connect_error) {
-    die("Conexão falhou: " . $conn->connect_error);
+    echo json_encode(['status' => 'error', 'message' => 'Conexão falhou: ' . $conn->connect_error]);
+    exit();
 }
+
+// Iniciar a sessão
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email'], $_POST['senha'])) {
     $email = $_POST['email'];
@@ -22,29 +23,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email'], $_POST['senha
     $email = $conn->real_escape_string($email);
     $senha = $conn->real_escape_string($senha);
 
-    // Consulta para verificar o email
+    // Verificar se o usuário existe no banco
     $sql = "SELECT * FROM usuarios WHERE email = '$email'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        
-        // Verificação da senha
+
+        // Verificar se a senha está correta
         if (password_verify($senha, $user['senha'])) {
-            // Login bem-sucedido, armazena o ID do usuário na sessão
             $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_email'] = $user['email']; // Você pode armazenar mais informações do usuário aqui, se necessário
-            
-            echo "Login realizado com sucesso!";
-            
-            // Redireciona para a página de contato ou outra página
-            header("Location: contato.html");
-            exit();
+            $_SESSION['user_email'] = $user['email'];
+
+            echo json_encode(['status' => 'success', 'message' => 'Login efetuado com sucesso!']);
         } else {
-            echo "Senha incorreta.";
+            echo json_encode(['status' => 'error', 'message' => 'Senha incorreta.']);
         }
     } else {
-        echo "Usuário não encontrado.";
+        echo json_encode(['status' => 'error', 'message' => 'Usuário não encontrado.']);
     }
 }
 
