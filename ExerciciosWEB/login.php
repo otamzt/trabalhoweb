@@ -32,8 +32,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email'], $_POST['senha
 
         // Verificar se a senha está correta
         if (password_verify($senha, $user['senha'])) {
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_email'] = $user['email'];
+            // Armazenar as informações na sessão
+            $_SESSION['user_id'] = $user['id']; // ID do usuário
+            $_SESSION['user_email'] = $user['email']; // Email do usuário
+            $_SESSION['is_admin'] = $user['is_admin']; // Verifica se o usuário é admin
 
             echo json_encode(['status' => 'success', 'message' => 'Login efetuado com sucesso!']);
         } else {
