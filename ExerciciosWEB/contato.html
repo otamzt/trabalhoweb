@@ -78,25 +78,39 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        $(document).ready(function() {
-            // Função para exibir submenus
-            $('#empresa-btn').hover(function() {
-                $('#empresa-submenu').fadeIn();
-            }, function() {
-                $('#empresa-submenu').fadeOut();
-            });
+         $(document).ready(function() {
+            // Função genérica para mostrar e esconder submenus
+            function showSubmenu(buttonId, submenuId) {
+                $(buttonId).hover(
+                    function() {
+                        var btnOffset = $(this).offset();
+                        var btnWidth = $(this).outerWidth();
+                        $(submenuId).css({
+                            top: btnOffset.top + $(this).outerHeight(),
+                            left: btnOffset.left,
+                            width: btnWidth // Ajusta a largura ao tamanho do botão
+                        }).stop().slideDown();
+                    },
+                    function() {
+                        $(submenuId).stop().slideUp();
+                    }
+                );
 
-            $('#obras-btn').hover(function() {
-                $('#obras-submenu').fadeIn();
-            }, function() {
-                $('#obras-submenu').fadeOut();
-            });
+                // Garantir que o submenu não desapareça quando o mouse está sobre ele
+                $(submenuId).hover(
+                    function() {
+                        $(this).stop().slideDown();
+                    },
+                    function() {
+                        $(this).stop().slideUp();
+                    }
+                );
+            }
 
-            $('#contato-btn').hover(function() {
-                $('#contato-submenu').fadeIn();
-            }, function() {
-                $('#contato-submenu').fadeOut();
-            });
+            // Chama a função para cada botão e submenu
+            showSubmenu('#empresa-btn', '#empresa-submenu');
+            showSubmenu('#obras-btn', '#obras-submenu');
+            showSubmenu('#contato-btn', '#contato-submenu');
 
             // Função para enviar o formulário via AJAX
             $('#contactForm').submit(function(event) {
