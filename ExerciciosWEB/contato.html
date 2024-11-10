@@ -13,10 +13,11 @@
         <img src="logo.jpg" alt="Logo Seculus" class="img-fluid" style="max-width: 300px;">
         <div class="bg-secondary">
             <div class="btn-group shadow-lg position-absolute w-100" style="bottom: 0; left: 0;">
-                <a href="index.html" class="btn btn-secondary w-100" id="home-btn">Página Principal</a>
+                <a href="index.html" class="btn btn-secondary w-100" id="index-btn">Página Principal</a>
                 <a href="empresa.html" class="btn btn-secondary w-100" id="empresa-btn">Sobre a Empresa</a>
-                <a href="obras.html" class="btn btn-secondary w-100" id="obras-btn">Obras</a>
-                <a href="#" class="btn btn-secondary w-100" id="contato-btn">Informações para Contato</a>
+                <a href="obras.php" class="btn btn-secondary w-100" id="obras-btn">Obras</a>
+                <a href="contato.html" class="btn btn-secondary w-100" id="contato-btn">Informações para Contato</a>
+                <a href="admin.php" class="btn btn-warning w-100" id="admin-btn" target="_blank"> Pagina do admninstrador </a>
                 <a href="login.html" class="btn btn-primary w-100" id="login-btn">Login</a>
             </div>
         </div>
@@ -35,11 +36,14 @@
             <a href="#residencias" class="btn btn-dark">Residências</a>
         </div>
 
-        <!-- Submenu de Informações para Contato -->
+        <<!-- Submenu de Informações para Contato -->
         <div id="contato-submenu" class="position-absolute text-center btn-group-vertical" style="display: none;">
-            <a href="https://www.google.com/maps/@-18.4745569,-47.1998095,3a,75y,92.33h,90t/data=!3m7!1e1!3m5!1s3PDadiaOBbmlK4nvFKZCYQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3D3PDadiaOBbmlK4nvFKZCYQ%26yaw%3D92.33213306970924!7i16384!8i8192?coh=205410&entry=ttu&g_ep=EgoyMDI0MTAxNi4wIKXMDSoASAFQAw%3D%3D" 
+            <a href="https://www.google.com/maps/place/Séculus+Construtora/@-18.4744919,-47.2022963,17z/data=!3m1!4b1!4m6!3m5!1s0x94af41bd58e079f5:0xc939a844f3c4504d!8m2!3d-18.474497!4d-47.199716!16s%2Fg%2F1pt_2g5g_?entry=ttu&g_ep=EgoyMDI0MTEwNi4wIKXMDSoASAFQAw%3D%3D" 
                class="btn btn-dark" target="_blank">Localização</a>
+            <a href="mailto:seculus@netcoro.com.br" class="btn btn-dark">E-mail</a>
+            <a href="tel:+553438411001" class="btn btn-dark">Telefone</a>
         </div>
+
     </header>
 
     <div class="container mt-4">
@@ -69,6 +73,9 @@
         </div>
 
         <div class="text-center">
+        </div>
+        
+
             <p><strong>Endereço:</strong> Av. Arthur Bernardes, 455, Centro</p>
             <p><strong>Cidade:</strong> Coromandel/MG</p>
             <p><strong>Telefone:</strong> (34) 3841-1001</p>
@@ -106,24 +113,34 @@
                     }
                 );
             }
-            //Verifica se ja está logado
+            $('#admin-btn').hide();
             $.ajax({
                 url: 'check_login.php', 
                 type: 'GET',
                 success: function(response) {
                     var data = JSON.parse(response);
                     if (data.status === 'success') {
+                        $.ajax({
+                            url: 'check_admin.php', 
+                            type: 'GET',
+                            success: function(adminResponse) {
+                                var adminData = JSON.parse(adminResponse);
+                                if (adminData.status === 'success') {
+                                    $('#admin-btn').show();
+                                } 
+                            },
+                            error: function() {
+                                console.error('Erro ao verificar status de administrador.');
+                            }
+                        });
                         $('#login-btn').text('Deslogar').removeClass('btn-primary').addClass('btn-danger');
-                        
-                        // Adicionar ação de logout
                         $('#login-btn').click(function() {
                             $.ajax({
-                                url: 'logout.php', // Um arquivo PHP que desconecta o usuário
+                                url: 'logout.php',
                                 type: 'GET',
                                 success: function(logoutResponse) {
                                     var logoutData = JSON.parse(logoutResponse);
-                                    if (logoutData.status === 'success') {
-                                        // Redireciona para a página de login após logout
+                                    if (logoutData.status === 'success') {                           
                                         window.location.href = 'login.html';
                                     } else {
                                         alert('Erro ao deslogar.');
@@ -131,6 +148,9 @@
                                 }
                             });
                         });
+                    } 
+                    else {
+                        $('#login-btn').text('Login').removeClass('btn-danger').addClass('btn-primary');
                     }
                 },
                 error: function() {

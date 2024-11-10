@@ -3,7 +3,6 @@ CREATE TABLE usuarios (
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     senha VARCHAR(100) NOT NULL,
-    telefone VARCHAR(15),
     data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -26,12 +25,5 @@ CREATE TABLE obras (
     data_fim DATE,
     status VARCHAR(50) CHECK (status IN ('Em andamento', 'Concluída', 'Planejada'))
 );
-
 CREATE SEQUENCE seq_id_usuarios START 1;
 ALTER TABLE usuarios ALTER COLUMN id SET DEFAULT nextval('seq_id_usuarios');
-
-CREATE SEQUENCE seq_id_contato START 1;
-ALTER TABLE contato ALTER COLUMN id SET DEFAULT nextval('seq_id_contato');
-
-CREATE SEQUENCE seq_id_obras START 1;
-ALTER TABLE obras ALTER COLUMN id SET DEFAULT nextval('seq_id_obras');

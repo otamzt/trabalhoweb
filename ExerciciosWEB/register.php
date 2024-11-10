@@ -1,4 +1,3 @@
-
 <?php
 $servername = "localhost";
 $username_db = "root";
@@ -8,7 +7,7 @@ $database = "seculus";
 $conn = new mysqli($servername, $username_db, $password_db, $database);
 
 if ($conn->connect_error) {
-    die("Conexão falhou: " . $conn->connect_error);
+    die(json_encode(["status" => "error", "message" => "Conexão falhou: " . $conn->connect_error]));
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -25,9 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO usuarios (nome, email, senha, telefone) VALUES ('$nome', '$email', '$senha', '$telefone')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Usuário cadastrado com sucesso!";
+        echo json_encode(["status" => "success", "message" => "Usuário cadastrado com sucesso!"]);
     } else {
-        echo "Erro ao cadastrar usuário: " . $conn->error;
+        echo json_encode(["status" => "error", "message" => "Erro ao cadastrar usuário: " . $conn->error]);
     }
 }
 

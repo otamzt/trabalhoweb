@@ -2,8 +2,8 @@
 // db.php
 $host = "localhost";
 $dbname = "Seculus"; // Banco padrão, altere se necessário
-$user = "admin"; // Nome do usuário
-$password = "admin"; // Senha do usuário
+$user = "root"; // Nome do usuário
+$password = ""; // Senha do usuário
 
 try {
     $conn = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
