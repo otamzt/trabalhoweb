@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seculus Construtora LTDA - Empresa</title>
+    <link rel="icon" type="image/x-icon" href="logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header class="text-center w-100 position-relative" style="background-color: #79838b; padding: 20px; padding-bottom: 60px;">
+        <img src="logo.jpg" alt="Logo Seculus" class="img-fluid" style="max-width: 300px;">
+        <div class="bg-secondary">
+            <div class="btn-group shadow-lg position-absolute w-100" style="bottom: 0; left: 0;">
+                <a href="index.html" class="btn btn-secondary w-100" id="index-btn">Página Principal</a>
+                <a href="empresa.html" class="btn btn-secondary w-100" id="empresa-btn">Sobre a Empresa</a>
+                <a href="obras.php" class="btn btn-secondary w-100" id="obras-btn">Obras</a>
+                <a href="contato.html" class="btn btn-secondary w-100" id="contato-btn">Informações para Contato</a>
+                <a href="admin.php" class="btn btn-warning w-100" id="admin-btn" target="_blank"> Pagina do admninstrador </a>
+                <a href="login.html" class="btn btn-primary w-100" id="login-btn">Login</a>
+            </div>
+        </div>
+
+        <!-- Submenu de Sobre a Empresa -->
+        <div id="empresa-submenu" class="position-absolute text-center btn-group-vertical" style="display: none;">
+            <a href="#historia" class="btn btn-dark">História</a>
+            <a href="#missao" class="btn btn-dark">Missão</a>
+            <a href="#valores" class="btn btn-dark">Valores</a>
+        </div>
+
+        <!-- Submenu de Obras -->
+        <div id="obras-submenu" class="position-absolute text-center btn-group-vertical" style="display: none;">
+            <a href="#quadras" class="btn btn-dark">Quadras</a>
+            <a href="#galpoes" class="btn btn-dark">Galpões</a>
+            <a href="#residencias" class="btn btn-dark">Residências</a>
+        </div>
+
+       <!-- Submenu de Informações para Contato -->
+       <div id="contato-submenu" class="position-absolute text-center btn-group-vertical" style="display: none;">
+        <a href="https://www.google.com/maps/place/Séculus+Construtora/@-18.4744919,-47.2022963,17z/data=!3m1!4b1!4m6!3m5!1s0x94af41bd58e079f5:0xc939a844f3c4504d!8m2!3d-18.474497!4d-47.199716!16s%2Fg%2F1pt_2g5g_?entry=ttu&g_ep=EgoyMDI0MTEwNi4wIKXMDSoASAFQAw%3D%3D" 
+           class="btn btn-dark" target="_blank">Localização</a>
+        <a href="mailto:seculus@netcoro.com.br" class="btn btn-dark">E-mail</a>
+        <a href="tel:+553438411001" class="btn btn-dark">Telefone</a>
+    </div>
+    </header>
+
+    <div class="container mt-4">
+        <h1 class="text-center">Sobre a Empresa</h1>
+        <div class="lead">
+            <h2 id="historia">Como Começou?</h2>
+            <p>Nossa construtora nasceu de um sonho: transformar ideias em espaços que inspiram e acolhem. Tudo começou com uma
+            pequena equipe de engenheiros e arquitetos apaixonados, que acreditavam na importância de construir com qualidade, ética e
+            respeito pelo meio ambiente. Com o compromisso de entregar obras que unem estética, funcionalidade e durabilidade, nosso primeiro
+            projeto foi um marco, firmando nossa reputação como uma empresa confiável e inovadora. Desde então, crescemos lado a lado com
+            nossos clientes, parceiros e colaboradores, desenvolvendo empreendimentos que valorizam a vida e enriquecem as comunidades onde
+            atuamos.</p>
+            
+            <h2 id="missao">Missão</h2>
+            <p>Nossa missão é construir espaços que vão além das estruturas físicas, criando ambientes que inspiram, acolhem e promovem bem-estar. Acreditamos que cada projeto é uma oportunidade de fazer a diferença, seja na vida de uma família, no crescimento de uma empresa ou na valorização de uma comunidade. Por isso, trabalhamos com um compromisso inabalável de qualidade, ética e sustentabilidade em todas as etapas do processo construtivo.
+                Desde o primeiro esboço até a entrega das chaves, nossa equipe está dedicada a entender as necessidades e sonhos de nossos clientes, traduzindo-os em projetos personalizados e funcionais. Valorizamos cada detalhe e utilizamos tecnologia e materiais de ponta para garantir não só segurança e durabilidade, mas também um impacto ambiental reduzido. Buscamos inovar constantemente e nos adaptar às novas tendências, sempre colocando o ser humano no centro de nossas construções.
+                Nosso propósito é simples: construir espaços que melhorem a vida das pessoas, deixando um legado positivo para as próximas gerações.</p>
+
+            <h2 id="valores">Valores</h2>
+            <p>Nossos valores são os pilares que sustentam cada projeto e guiam nossa atuação no mercado. Eles refletem o compromisso que temos com a qualidade, a inovação e o respeito por todos os envolvidos no processo construtivo.</p>
+                <b>Excelência e Qualidade</b><p> Acreditamos que cada detalhe importa. Trabalhamos com rigor e dedicação para entregar obras que superem as expectativas dos nossos clientes, garantindo segurança, durabilidade e um acabamento impecável.</p>
+                <b>Ética e Transparência</b> <p>Construímos mais do que prédios; construímos relações. Agimos com honestidade e transparência em todas as interações, prezando pela confiança mútua e pelo respeito com clientes, colaboradores e fornecedores.</p>
+                <b>Sustentabilidade e Responsabilidade Social</b> <p>Temos um compromisso com o meio ambiente e com as comunidades onde atuamos. Adotamos práticas sustentáveis e buscamos minimizar o impacto ambiental de nossas obras, sempre com foco em promover desenvolvimento e bem-estar social.</p>               
+                <b>Inovação e Evolução</b><p> Acreditamos na importância de inovar para construir melhor. Investimos em tecnologia e aprimoramento contínuo para oferecer soluções modernas, eficientes e alinhadas às demandas do futuro.</p>                
+                <b>Foco no Cliente</b><p> A satisfação dos nossos clientes é o centro do nosso trabalho. Escutamos e entendemos suas necessidades, buscando transformar seus sonhos em realidade com uma abordagem personalizada e dedicada.</p>                
+                Esses valores guiam cada passo que damos e reforçam nosso compromisso com um futuro construído com ética, competência e humanidade.
+            </p>
+        </div>
+    </div>
+    <!-- Rodapé -->
+    <footer class="text-center text-white mt-5" style="background-color: #79838b; padding: 20px;">
+        <div class="container">
+            <p class="mb-1">© 2024 Seculus Construtora LTDA - Todos os direitos reservados.</p>
+            <p class="mb-1">Endereço: Rua Arthur Bernades, 455 - Coromandel, MG</p>
+            <p class="mb-1">Telefone: <a href="tel:+553438411001" class="text-white">+55 (34) 3841-1001</a></p>
+            <p class="mb-1">Email: <a href="mailto:seculus@netcoro.com.br" class="text-white">seculus@netcoro.com.br</a></p>
+            <div class="mt-3">
+                <a href="https://www.instagram.com/seculus_construtora" target="_blank" class="text-white me-3">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Função para exibir e ocultar submenus ao passar o mouse
+            function toggleSubmenu(buttonId, submenuId) {
+                $(buttonId).hover(
+                    function() {
+                        var btnOffset = $(this).offset();
+                        var btnWidth = $(this).outerWidth();
+                        $(submenuId).css({
+                            top: btnOffset.top + $(this).outerHeight(),
+                            left: btnOffset.left,
+                            width: btnWidth
+                        }).stop().slideDown();
+                    },
+                    function() {
+                        $(submenuId).stop().slideUp();
+                    }
+                );
+
+                // Manter submenu aberto quando o mouse estiver sobre ele
+                $(submenuId).hover(
+                    function() {
+                        $(this).stop().slideDown();
+                    },
+                    function() {
+                        $(this).stop().slideUp();
+                    }
+                );
+            }
+
+            // Ativar submenus para cada botão
+            toggleSubmenu('#empresa-btn', '#empresa-submenu');
+            toggleSubmenu('#obras-btn', '#obras-submenu');
+            toggleSubmenu('#contato-btn', '#contato-submenu');
+
+            // Efeito de deslizamento ao clicar nos links do submenu
+            $('a[href^="#"]').click(function(event) {
+                event.preventDefault();
+                var target = $($(this).attr('href'));
+                if (target.length) {
+                    $('html, body').animate({
+                        scrollTop: target.offset().top
+                    }, 800);
+                }
+            });
+            $('#admin-btn').hide();
+            $.ajax({
+                url: 'check_login.php', 
+                type: 'GET',
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    if (data.status === 'success') {
+                        $.ajax({
+                            url: 'check_admin.php', 
+                            type: 'GET',
+                            success: function(adminResponse) {
+                                var adminData = JSON.parse(adminResponse);
+                                if (adminData.status === 'success') {
+                                    $('#admin-btn').show();
+                                } 
+                            },
+                            error: function() {
+                                console.error('Erro ao verificar status de administrador.');
+                            }
+                        });
+                        $('#login-btn').text('Deslogar').removeClass('btn-primary').addClass('btn-danger');
+                        $('#login-btn').click(function() {
+                            $.ajax({
+                                url: 'logout.php',
+                                type: 'GET',
+                                success: function(logoutResponse) {
+                                    var logoutData = JSON.parse(logoutResponse);
+                                    if (logoutData.status === 'success') {                           
+                                        window.location.href = 'login.html';
+                                    } else {
+                                        alert('Erro ao deslogar.');
+                                    }
+                                }
+                            });
+                        });
+                    } 
+                    else {
+                        $('#login-btn').text('Login').removeClass('btn-danger').addClass('btn-primary');
+                    }
+                },
+                error: function() {
+                    console.error('Erro ao verificar status de login.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
